@@ -54,7 +54,7 @@ public class Board {
 	// JoinColumn은 필요없음
 	// CascadeType.REMOVE : 게시글을 지우면 그 게시글에 달린 댓글들은 다 지우겠다.
 	@JsonIgnoreProperties({"board"}) // 무한참조 방지. 이걸로 board로 reply를 뽑을때 board를 참조하지않음
-	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)  // mappedBy => 연관관계의 주인이아니다(FK가 아니다), DB에 컬럼 없음
+	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)  // mappedBy => 연관관계의 주인이아니다(FK가 아니다), DB에 컬럼 없음
 	@OrderBy("id desc")
 	private List<Reply> replys;
 
