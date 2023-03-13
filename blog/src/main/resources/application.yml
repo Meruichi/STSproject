@@ -1,0 +1,42 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+    
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/ # 앞에 붙여주는 경로명
+      suffix: .jsp            # 뒤에 붙여주는 경로명
+      
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
+    username: cos
+    password: cos1234
+    
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+      #create : (있더라도, 프로젝트 재실행마다)테이블 새로 생성, 최초만 생성후 update권장
+      #update, none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
+    show-sql: true
+    properties:
+      "[hibernate.format_sql]": true
+    defer-datasource-initialization: true
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      
+cos:
+  key: qawsedrf #절대 노출되면 안됨(카카오로회원가입할때 만들어지는 패스워드를 키값으로 통일)
+      
+      
