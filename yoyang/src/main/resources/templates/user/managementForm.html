@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8">
+<th:block th:replace="~{layout/config::config}"></th:block>
+</head>
+<header th:replace="~{layout/header::header}"></header>
+<style>
+table {
+	width: 100%;
+	border: 1px solid;
+}
+
+th, td {
+	border: 1px solid;
+}
+</style>
+<body>
+
+	<div class="container">
+		<br />
+		<h1 align="center">사용자 목록</h1>
+		<br />
+		<table id="userList">
+			<tr align="center">
+				<th class="th" style="width: 5%;">구분</th>
+				<th class="th" style="width: 15%;">아이디</th>
+				<th class="th" style="width: 7%;">이름</th>
+				<th class="th" style="width: 10%;">연락처</th>
+				<th class="th" style="width: 15%;">이메일</th>
+				<th class="th" style="width: 10%;">가입일자</th>
+				<th class="th" style="width: 7%;">탈퇴여부</th>
+				<th class="th" style="width: 10%;">역할</th>
+			</tr>
+			<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
+			<tr th:each="user : ${users}" class="tr" align="center">
+				<td class="td" id="userNumber" th:text="${user.userNumber}"></td>
+				<td class="td" id="username" th:value="${user.username}" th:text="${user.username}"></td>
+				<td class="td" id="userRealname" th:value="${user.userRealname}" th:text="${user.userRealname}"></td>
+				<td class="td" id="userPhoneNumber" th:text="${user.userPhoneNumber}"></td>
+				<td class="td" id="userEmail" th:text="${user.userEmail}"></td>
+				<td class="td" id="createDate" th:text="${#strings.substring(user.createDate, 0, 10)}"></td>
+				<td class="td" id="userWithdrawn" th:text="${user.userWithdrawn}"></td>
+				<td class="td" id="role" th:value="${user.role}" th:text="${user.role}"></td>
+			</th:block>
+			<th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
+			<tr th:each="user : ${users}" class="tr" align="center" th:if="${#authentication.principal.user.branch == user.branch}">
+				<td class="td" id="userNumber" th:text="${user.userNumber}"></td>
+				<td class="td" id="username" th:value="${user.username}" th:text="${user.username}"></td>
+				<td class="td" id="userRealname" th:value="${user.userRealname}" th:text="${user.userRealname}"></td>
+				<td class="td" id="userPhoneNumber" th:text="${user.userPhoneNumber}"></td>
+				<td class="td" id="userEmail" th:text="${user.userEmail}"></td>
+				<td class="td" id="createDate" th:text="${#strings.substring(user.createDate, 0, 10)}"></td>
+				<td class="td" id="userWithdrawn" th:text="${user.userWithdrawn}"></td>
+				<td class="td" id="role" th:value="${user.role}" th:text="${user.role}"></td>
+			</th:block>
+		</table>
+		<ul class="pagination justify-content-center">
+			<th:block th:if="${users.first}">
+				<li class="page-item disabled"><a class="page-link" th:href="@{/user/managementForm/(page=${users.number - 1})}">이전</a></li>
+			</th:block>
+			<th:block th:unless="${users.first}">
+				<li class="page-item"><a class="page-link" th:href="@{/user/managementForm/(page=${users.number - 1})}">이전</a></li>
+			</th:block>
+
+			<th:block th:if="${users.last}">
+				<li class="page-item disabled"><a class="page-link" th:href="@{/user/managementForm/(page=${users.number + 1})}">다음</a></li>
+			</th:block>
+			<th:block th:unless="${users.last}">
+				<li class="page-item"><a class="page-link" th:href="@{/user/managementForm/(page=${users.number + 1})}">다음</a></li>
+			</th:block>
+		</ul>
+	</div>
+	<script src="/js/user.js"></script>
+</body>
+<footer th:replace="~{layout/footer::footer}"></footer>
+</html>

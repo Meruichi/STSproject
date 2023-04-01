@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8">
+<th:block th:replace="~{layout/config::config}"></th:block>
+</head>
+<header th:replace="~{layout/header::header}"></header>
+<style>
+table {
+	width: 100%;
+	border: 1px solid;
+}
+
+th, td {
+	border: 1px solid;
+}
+</style>
+<body>
+
+	<div class="container">
+		<br />
+		<h1 align="center">지점 목록</h1>
+		<br />
+		<table id="branchList">
+			<tr align="center">
+				<th class="th" style="width: 5%;">구분</th>
+				<th class="th" style="width: 10%;">지점명</th>
+				<th class="th" style="width: 20%;">지점 주소</th>
+				<th class="th" style="width: 15%;">지점 전화번호</th>
+			<!-- 	<th class="th" style="width: 10%;">대표자 성함</th>
+				<th class="th" style="width: 15%;">대표자 전화번호</th> -->
+				<th class="th" style="width: 15%;">서버상 생성날짜</th>
+				<th class="th" style="width: 10%;">폐점여부</th>
+			</tr>
+			<tr th:each="branch : ${branches}" class="tr" align="center">
+				<td class="td" id="id" th:text="${branch.id}"></td>
+				<td class="td" id="branchName" th:value="${branch.branchName}" th:text="${branch.branchName}"></td>
+				<td class="td" id="branchAddress" th:value="${branch.branchAddress}" th:text="${branch.branchAddress}"></td>
+		 		<td class="td" id="branchDirectNumber" th:text="${branch.branchDirectNumber}"></td>
+				<!--<td class="td" id="representativeRealname" th:text="${branch.user.userRealname}"></td>
+				<td class="td" id="representativePhoneNumber" th:text="${branch.user.userPhoneNumber}"></td> -->
+				<td class="td" id="createDate" th:text="${#strings.substring(branch.createDate, 0, 10)}"></td>
+				<td class="td" id="branchWithdrawn" th:value="${branch.branchWithdrawn}" th:text="${branch.branchWithdrawn}"></td>
+		</table>
+		<ul class="pagination justify-content-center">
+			<th:block th:if="${branches.first}">
+				<li class="page-item disabled"><a class="page-link" th:href="@{/branch/branchManagementForm/(page=${branches.number - 1})}">이전</a></li>
+			</th:block>
+			<th:block th:unless="${branches.first}">
+				<li class="page-item"><a class="page-link" th:href="@{/branch/branchManagementForm/(page=${branches.number - 1})}">이전</a></li>
+			</th:block>
+
+			<th:block th:if="${branches.last}">
+				<li class="page-item disabled"><a class="page-link" th:href="@{/branch/branchManagementForm/(page=${branches.number + 1})}">다음</a></li>
+			</th:block>
+			<th:block th:unless="${branches.last}">
+				<li class="page-item"><a class="page-link" th:href="@{/branch/branchManagementForm/(page=${branches.number + 1})}">다음</a></li>
+			</th:block>
+		</ul>
+	</div>
+	<script src="/js/user.js"></script>
+</body>
+<footer th:replace="~{layout/footer::footer}"></footer>
+</html>

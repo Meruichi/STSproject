@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8">
+<th:block th:replace="~{layout/config::config}"></th:block>
+</head>
+<header th:replace="~{layout/header::header}"></header>
+<style>
+table {
+	width: 100%;
+	border: 1px solid;
+}
+
+th, td {
+	border: 1px solid;
+}
+</style>
+<body>
+
+	<div class="container">
+		<br />
+		<h1 align="center">보고 목록</h1>
+		<br />
+		<table id="itemReportList">
+			<tr align="center">
+				<th class="th" style="width: 7%;">구분</th>
+				<th class="th" style="width: 10%;">보고 유형</th>
+				<th class="th" style="width: 15%;">품목명</th>
+				<th class="th" style="width: 10%;">수량(양)</th>
+				<th class="th" style="width: 28%;">비고</th>
+				<th class="th" style="width: 10%;">보고자</th>
+				<th class="th" style="width: 15%;">보고 날짜</th>
+				<th class="th" style="width: 5%;">삭제</th>
+			</tr>
+			<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
+			<th:block th:each="item : ${items}">
+			<tr th:each="itemReport : ${itemReports}" class="tr" align="center">
+				<td class="td" id="id" th:text="${itemReport.id}"></td>
+				<th:block>
+				<td th:if="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">발주</td>
+				<td th:unless="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">소모</td>
+				</th:block>
+				<td class="td" id="itemName" th:text="${itemReport.item.itemName}"></td>
+				<td class="td" id="itemQuantityReport" th:text="${itemReport.itemQuantityReport}"></td>
+				<td class="td" id="itemReportComment" th:text="${itemReport.itemReportComment}"></td>
+				<td class="td" id="itemReportComment" th:text="${itemReport.user.userRealname}"></td>
+				<td class="td" id="createDate" th:text="${#strings.substring(itemReport.createDate, 0, 10)}"></td>
+				<td class="td"><button id="btn-delete" th:value="${itemReport.id}">삭제</button></td>
+			</th:block>
+			</th:block>
+			<th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
+			<th:block th:each="item : ${items}" th:if="${#authentication.principal.user.branch == item.branch}">
+			<tr th:each="itemReport : ${itemReports}" class="tr" align="center">
+				<td class="td" id="id" th:text="${itemReport.id}"></td>
+				<th:block>
+				<td th:if="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">발주</td>
+				<td th:unless="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">소모</td>
+				</th:block>
+				<td class="td" id="itemName" th:text="${itemReport.item.itemName}"></td>
+				<td class="td" id="itemQuantityReport" th:text="${itemReport.itemQuantityReport}"></td>
+				<td class="td" id="itemReportComment" th:text="${itemReport.itemReportComment}"></td>
+				<td class="td" id="itemReportComment" th:text="${itemReport.user.userRealname}"></td>
+				<td class="td" id="createDate" th:text="${#strings.substring(itemReport.createDate, 0, 10)}"></td>
+				<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'MANAGER'}">
+					<td class="td"><button id="btn-delete" th:value="${itemReport.id}">삭제</button></td>
+				</th:block>
+				<th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'MANAGER'}">
+					<td class="td">MANAGER전용</td>
+				</th:block>				
+			</th:block>
+			</th:block>
+		</table>
+		<ul class="pagination justify-content-center">
+			<th:block th:if="${itemReports.first}">
+				<li class="page-item disabled"><a class="page-link" th:href="@{/item/itemMReportanagementForm/(page=${itemReports.number - 1})}">이전</a></li>
+			</th:block>
+			<th:block th:unless="${itemReports.first}">
+				<li class="page-item"><a class="page-link" th:href="@{/item/itemReportManagementForm/(page=${itemReports.number - 1})}">이전</a></li>
+			</th:block>
+
+			<th:block th:if="${itemReports.last}">
+				<li class="page-item disabled"><a class="page-link" th:href="@{/item/itemReportManagementForm/(page=${itemReports.number + 1})}">다음</a></li>
+			</th:block>
+			<th:block th:unless="${itemReports.last}">
+				<li class="page-item"><a class="page-link" th:href="@{/item/itemReportManagementForm/(page=${itemReports.number + 1})}">다음</a></li>
+			</th:block>
+		</ul>
+	</div>
+	<script src="/js/itemReport.js"></script>
+</body>
+<footer th:replace="~{layout/footer::footer}"></footer>
+</html>

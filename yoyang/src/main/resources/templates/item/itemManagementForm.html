@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8">
+<th:block th:replace="~{layout/config::config}"></th:block>
+</head>
+<header th:replace="~{layout/header::header}"></header>
+<style>
+table {
+	width: 100%;
+	border: 1px solid;
+}
+
+th, td {
+	border: 1px solid;
+}
+</style>
+<body>
+
+	<div class="container">
+		<br />
+		<h1 align="center">물품 목록</h1>
+		<br />
+		<table id="itemList">
+			<tr align="center">
+				<th class="th" style="width: 7%;">구분</th>
+				<th class="th" style="width: 10%;">지점명</th>
+				<th class="th" style="width: 13%;">카테고리</th>
+				<th class="th" style="width: 20%;">품목명</th>
+				<th class="th" style="width: 10%;">남은 수량(양)</th>
+				<th class="th" style="width: 30%;">비고</th>
+				<th class="th" style="width: 10%;">삭제</th>
+			</tr>
+			<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
+			<tr th:each="item : ${items}" class="tr" align="center">
+				<td class="td" id="id" th:text="${item.id}"></td>
+				<td class="td" id="branchName" th:text="${item.branch.branchName}"></td>
+				<td class="td" id="itemReportCategory" th:value="${item.itemReportCategory}" th:text="${item.itemReportCategory}"></td>
+				<td class="td" id="itemName" th:value="${item.itemName}" th:text="${item.itemName}"></td>
+				<td class="td" id="itemQuantity" th:text="${item.itemQuantity}"></td>
+				<td class="td" id="itemListComment" th:text="${item.itemListComment}"></td>
+				<td class="td"><button id="btn-delete" th:value="${item.id}">삭제</button></td>
+			</tr>
+			</th:block>
+			<th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
+			<tr th:each="item : ${items}" class="tr" align="center" th:if="${#authentication.principal.user.branch == item.branch}">
+				<td class="td" id="id" th:text="${item.id}"></td>
+				<td class="td" id="branchName" th:text="${item.branch.branchName}"></td>
+				<td class="td" id="itemReportCategory" th:value="${item.itemReportCategory}" th:text="${item.itemReportCategory}"></td>
+				<td class="td" id="itemName" th:value="${item.itemName}" th:text="${item.itemName}"></td>
+				<td class="td" id="itemQuantity" th:text="${item.itemQuantity}"></td>
+				<td class="td" id="itemListComment" th:text="${item.itemListComment}"></td>
+				<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'MANAGER'}">
+					<td class="td"><button id="btn-delete" th:value="${item.id}">삭제</button></td>
+				</th:block>
+				<th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'MANAGER'}">
+					<td class="td">MANAGER전용</td>
+				</th:block>
+			</tr>
+			</th:block>
+		</table>
+		<ul class="pagination justify-content-center">
+			<th:block th:if="${items.first}">
+				<li class="page-item disabled"><a class="page-link" th:href="@{/item/itemManagementForm/(page=${items.number - 1})}">이전</a></li>
+			</th:block>
+			<th:block th:unless="${items.first}">
+				<li class="page-item"><a class="page-link" th:href="@{/item/itemManagementForm/(page=${items.number - 1})}">이전</a></li>
+			</th:block>
+
+			<th:block th:if="${items.last}">
+				<li class="page-item disabled"><a class="page-link" th:href="@{/item/itemManagementForm/(page=${items.number + 1})}">다음</a></li>
+			</th:block>
+			<th:block th:unless="${items.last}">
+				<li class="page-item"><a class="page-link" th:href="@{/item/itemManagementForm/(page=${items.number + 1})}">다음</a></li>
+			</th:block>
+		</ul>
+	</div>
+	<script src="/js/item.js"></script>
+</body>
+<footer th:replace="~{layout/footer::footer}"></footer>
+</html>

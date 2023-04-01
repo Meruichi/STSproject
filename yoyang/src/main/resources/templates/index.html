@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8">
+<th:block th:replace="~{layout/config::config}"></th:block>
+</head>
+<header th:replace="~{layout/header::header}"></header>
+<style>
+table {
+	width: 100%;
+	border: 1px solid;
+}
+
+th, td {
+	border: 1px solid;
+}
+</style>
+<body>
+
+	<div class="container">
+		<br />
+		<h1 align="center">공지사항</h1>
+		<br />
+		<table>
+			<tr align="center">
+				<th class="th" style="width: 5%;">구분</th>
+				<th class="th" style="width: 80%;">제목</th>
+				<th class="th" style="width: 15%;">작성일자</th>
+			</tr>
+			<tr th:each="board : ${boards}" class="tr" align="center">
+				<td th:text="${board.id}" class="td"></td>
+				<td><h5 align="left">
+						<a th:href="@{/board/{id}(id=${board.id})}" class="card-title mt-2" style="font-size: 15px;" th:text="${board.title}"></a>
+					</h5></td>
+				<td th:text="${#strings.substring(board.createDate, 0, 10)}" class="td"></td>
+			</tr>
+		</table>
+		<ul class="pagination justify-content-center">
+			<th:block th:if="${boards.first}">
+				<li class="page-item disabled"><a class="page-link" th:href="@{/(page=${boards.number - 1})}">이전</a></li>
+			</th:block>
+			<th:block th:unless="${boards.first}">
+				<li class="page-item"><a class="page-link" th:href="@{/(page=${boards.number - 1})}">이전</a></li>
+			</th:block>
+
+			<th:block th:if="${boards.last}">
+				<li class="page-item disabled"><a class="page-link" th:href="@{/(page=${boards.number + 1})}">다음</a></li>
+			</th:block>
+			<th:block th:unless="${boards.last}">
+				<li class="page-item"><a class="page-link" th:href="@{/(page=${boards.number + 1})}">다음</a></li>
+			</th:block>
+		</ul>
+	</div>
+</body>
+<br />
+<footer th:replace="~{layout/footer::footer}"></footer>
+</html>

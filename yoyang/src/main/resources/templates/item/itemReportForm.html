@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8">
+<th:block th:replace="~{layout/config::config}"></th:block>
+</head>
+<header th:replace="~{layout/header::header}"></header>
+<body>
+	<div class="container">
+		<form>
+			<div class="form-group">
+				<label for="item">아이템 선택 : </label> <select name="item" class="form-control">
+					<option value="" selected>품목을 선택하세요</option>
+					<th:block th:each="item : ${items}" th:if="${#authentication.principal.user.branch.id == item.branch.id}">
+						<option id="itemId" th:value="${item.id}" th:text="${item.itemName}"></option>
+					</th:block>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="reportType">보고 구분 : &nbsp;&nbsp;</label>
+					<select name="reportType" id="reportType" class="form-control">
+							<option value="" selected>보고유형을 선택하세요</option>
+							<option value="STORE">발주</option>
+							<option value="CONSUMPTION">소모</option>
+					</select>
+			</div>
+			<div class="form-group">
+				<label for="itemQuantityReport">보고 수량 : (단위 제외)</label> <input class="form-control" id="itemQuantityReport"></input>
+			</div>
+			<div class="form-group">
+				<label for="itemReportComment">비고 : </label> <input class="form-control" id="itemReportComment"></input>
+			</div>
+		</form>
+		<button id="btn-report" class="btn btn-primary">등록</button>
+	</div>
+	<script src="/js/itemReport.js"></script>
+</body>
+<footer th:replace="~{layout/footer::footer}"></footer>
+</html>
