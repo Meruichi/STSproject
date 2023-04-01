@@ -3,7 +3,6 @@ package com.cos.blog.config.auth;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
