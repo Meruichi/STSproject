@@ -28,7 +28,7 @@ public class Item {
 	private Branch branch;
 	
 	@Column(nullable = false, length = 20)
-	private String itemReportCategory; // 소모품, 고정물품, 기타등등
+	private String itemCategory; // 소모품, 고정물품, 기타등등
 	
 	@Column(nullable = false, length = 50)
 	private String itemName; 

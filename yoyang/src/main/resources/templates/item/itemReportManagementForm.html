@@ -33,41 +33,54 @@ th, td {
 				<th class="th" style="width: 5%;">삭제</th>
 			</tr>
 			<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
-			<th:block th:each="item : ${items}">
-			<tr th:each="itemReport : ${itemReports}" class="tr" align="center">
-				<td class="td" id="id" th:text="${itemReport.id}"></td>
-				<th:block>
-				<td th:if="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">발주</td>
-				<td th:unless="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">소모</td>
+				<th:block th:each="item : ${items}">
+					<tr th:each="itemReport : ${itemReports}" class="tr" align="center" th:if="${item.id == itemReport.item.id}">
+						<td class="td" id="id" th:text="${itemReport.id}"></td>
+						<th:block>
+							<td th:if="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">발주</td>
+							<td th:unless="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">소모</td>
+						</th:block>
+						<td class="td" id="itemName" th:text="${itemReport.item.itemName}"></td>
+						<td class="td" id="itemQuantityReport" th:text="${itemReport.itemQuantityReport}"></td>
+						<td class="td" id="itemReportComment" th:text="${itemReport.itemReportComment}"></td>
+						<td class="td" id="itemReportComment" th:text="${itemReport.user.userRealname}"></td>
+						<td class="td" id="createDate" th:text="${#strings.substring(itemReport.createDate, 0, 10)}"></td>
+						<td class="td"><button id="btn-delete" th:value="${itemReport.id}">삭제</button></td>
 				</th:block>
-				<td class="td" id="itemName" th:text="${itemReport.item.itemName}"></td>
-				<td class="td" id="itemQuantityReport" th:text="${itemReport.itemQuantityReport}"></td>
-				<td class="td" id="itemReportComment" th:text="${itemReport.itemReportComment}"></td>
-				<td class="td" id="itemReportComment" th:text="${itemReport.user.userRealname}"></td>
-				<td class="td" id="createDate" th:text="${#strings.substring(itemReport.createDate, 0, 10)}"></td>
-				<td class="td"><button id="btn-delete" th:value="${itemReport.id}">삭제</button></td>
 			</th:block>
-			</th:block>
-			<th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
-			<th:block th:each="item : ${items}" th:if="${#authentication.principal.user.branch == item.branch}">
-			<tr th:each="itemReport : ${itemReports}" class="tr" align="center">
-				<td class="td" id="id" th:text="${itemReport.id}"></td>
-				<th:block>
-				<td th:if="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">발주</td>
-				<td th:unless="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">소모</td>
+
+			<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'MANAGER'}">
+				<th:block th:each="item : ${items}" th:if="${#authentication.principal.user.branch == item.branch}">
+					<tr th:each="itemReport : ${itemReports}" class="tr" align="center" th:if="${item.id == itemReport.item.id}">
+						<td class="td" id="id" th:text="${itemReport.id}"></td>
+						<th:block>
+							<td th:if="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">발주</td>
+							<td th:unless="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">소모</td>
+						</th:block>
+						<td class="td" id="itemName" th:text="${itemReport.item.itemName}"></td>
+						<td class="td" id="itemQuantityReport" th:text="${itemReport.itemQuantityReport}"></td>
+						<td class="td" id="itemReportComment" th:text="${itemReport.itemReportComment}"></td>
+						<td class="td" id="itemReportComment" th:text="${itemReport.user.userRealname}"></td>
+						<td class="td" id="createDate" th:text="${#strings.substring(itemReport.createDate, 0, 10)}"></td>
+						<td class="td"><button id="btn-delete" th:value="${itemReport.id}">삭제</button></td>
 				</th:block>
-				<td class="td" id="itemName" th:text="${itemReport.item.itemName}"></td>
-				<td class="td" id="itemQuantityReport" th:text="${itemReport.itemQuantityReport}"></td>
-				<td class="td" id="itemReportComment" th:text="${itemReport.itemReportComment}"></td>
-				<td class="td" id="itemReportComment" th:text="${itemReport.user.userRealname}"></td>
-				<td class="td" id="createDate" th:text="${#strings.substring(itemReport.createDate, 0, 10)}"></td>
-				<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'MANAGER'}">
-					<td class="td"><button id="btn-delete" th:value="${itemReport.id}">삭제</button></td>
-				</th:block>
-				<th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'MANAGER'}">
-					<td class="td">MANAGER전용</td>
-				</th:block>				
 			</th:block>
+
+			<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'EMPLOYEE'}">
+				<th:block th:each="item : ${items}" th:if="${#authentication.principal.user.branch == item.branch}">
+					<tr th:each="itemReport : ${itemReports}" class="tr" align="center" th:if="${item.id == itemReport.item.id}">
+						<td class="td" id="id" th:text="${itemReport.id}"></td>
+						<th:block>
+							<td th:if="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">발주</td>
+							<td th:unless="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">소모</td>
+						</th:block>
+						<td class="td" id="itemName" th:text="${itemReport.item.itemName}"></td>
+						<td class="td" id="itemQuantityReport" th:text="${itemReport.itemQuantityReport}"></td>
+						<td class="td" id="itemReportComment" th:text="${itemReport.itemReportComment}"></td>
+						<td class="td" id="itemReportComment" th:text="${itemReport.user.userRealname}"></td>
+						<td class="td" id="createDate" th:text="${#strings.substring(itemReport.createDate, 0, 10)}"></td>
+						<td class="td">MANAGER전용</td>
+				</th:block>
 			</th:block>
 		</table>
 		<ul class="pagination justify-content-center">

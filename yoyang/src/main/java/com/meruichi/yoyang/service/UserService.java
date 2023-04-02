@@ -22,7 +22,7 @@ public class UserService {
 
 	@Autowired
 	private BranchRepository branchRepository;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 
@@ -44,22 +44,21 @@ public class UserService {
 
 	@Transactional
 	public void 회원수정(User user) {
-		User persistance = userRepository.findByUsername(user.getUsername())
-				.orElseThrow(()->{
-					return new IllegalArgumentException("회원찾기 실패");
-				});
-		
+		User persistance = userRepository.findByUsername(user.getUsername()).orElseThrow(() -> {
+			return new IllegalArgumentException("회원찾기 실패");
+		});
+
 		// Validate체크(카카오 유저가 아닌 경우에만 비밀번호해쉬화,수정가능)
-			String rawPassword = user.getPassword();
-			String encPassword = encoder.encode(rawPassword);
-			persistance.setPassword(encPassword);	
-			persistance.setUserEmail(user.getUserEmail());
-			persistance.setUserRealname(user.getUserRealname());
-			persistance.setUserPhoneNumber(user.getUserPhoneNumber());
-			
+		String rawPassword = user.getPassword();
+		String encPassword = encoder.encode(rawPassword);
+		persistance.setPassword(encPassword);
+		persistance.setUserEmail(user.getUserEmail());
+		persistance.setUserRealname(user.getUserRealname());
+		persistance.setUserPhoneNumber(user.getUserPhoneNumber());
+
 		// persistance객체의 변화가 감지되면 update문을 날림
 	}
-	
+
 	@Transactional(readOnly = true)
 	public Page<User> 유저목록(Pageable pageable) {
 		return userRepository.findAll(pageable);
@@ -67,13 +66,25 @@ public class UserService {
 
 	@Transactional
 	public void 회원지점연결(User user, int id) {
-		Branch persistance = branchRepository.findById(id)
-				.orElseThrow(()->{
-					return new IllegalArgumentException("회원찾기 실패");
-				});
+		Branch persistance = branchRepository.findById(id).orElseThrow(() -> {
+			return new IllegalArgumentException("회원찾기 실패");
+		});
 		user.setBranch(persistance);
 		userRepository.save(user);
 	}
 
+	public void 권한변경(int id) {
+		User persistance = userRepository.findById(id).orElseThrow(() -> {
+			return new IllegalArgumentException("회원찾기 실패");
+		});
+		if (persistance.getRole().toString() == "MANAGER") {
+			persistance.setRole(UserRoleType.EMPLOYEE);
+		} else if (persistance.getRole().toString() == "EMPLOYEE") {
+			persistance.setRole(UserRoleType.MANAGER);
+		} else {
+			System.out.println(persistance.getRole().toString());
+		}
+		userRepository.save(persistance);
+	}
 
 }

@@ -9,8 +9,8 @@ let index = {
 		$("#btn-update").on("click", () => {
 			this.update();
 		});
-		$("#btn-roleupdate").on("click", () => {
-			this.roleupdate();
+		$("#btn-role-update").on("click", () => {
+			this.roleUpdate();
 		});
 		$("#btn-connect").on("click", () => {
 			this.connect();
@@ -87,6 +87,7 @@ let index = {
 	},
 	connect: function() {
 		let id = $("#branchId").val();
+		alert(id);
 		$.ajax({
 			type: "put",
 			url: "/user/connectForm/" + id ,
@@ -95,6 +96,20 @@ let index = {
 		}).done(function(resp) {
 			alert("지점연결 완료");
 			location.href = "/";
+		}).fail(function(error) {
+			alert(JSON.stringify(error));
+		});
+	},
+	roleUpdate: function() {
+		let id = $("#btn-role-update").val();
+		$.ajax({
+			type: "put",
+			url: "/user/managementForm/" + id ,
+			//data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+		}).done(function(resp) {
+			alert("권한변경 완료");
+			location.href = "/user/managementForm";
 		}).fail(function(error) {
 			alert(JSON.stringify(error));
 		});

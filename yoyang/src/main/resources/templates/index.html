@@ -11,8 +11,13 @@ table {
 	border: 1px solid;
 }
 
-th, td {
+th {
 	border: 1px solid;
+}
+
+td {
+	border: 1px solid;
+	padding: 0 0 0 5px;
 }
 </style>
 <body>
@@ -30,7 +35,7 @@ th, td {
 			<tr th:each="board : ${boards}" class="tr" align="center">
 				<td th:text="${board.id}" class="td"></td>
 				<td><h5 align="left">
-						<a th:href="@{/board/{id}(id=${board.id})}" class="card-title mt-2" style="font-size: 15px;" th:text="${board.title}"></a>
+						<a th:href="@{/board/{id}(id=${board.id})}" class="card-title mt-2" style="font-size: 15px; color: black;" th:text="${board.title}"></a>
 					</h5></td>
 				<td th:text="${#strings.substring(board.createDate, 0, 10)}" class="td"></td>
 			</tr>

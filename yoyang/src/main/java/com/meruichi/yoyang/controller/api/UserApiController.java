@@ -56,5 +56,12 @@ public class UserApiController {
 		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); 
 	}
+	
+	@PutMapping("/user/managementForm/{id}")
+	public ResponseDto<Integer> roleUpdate(@PathVariable int id){
+		userService.권한변경(id);
+		
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); 
+	}
 
 }
