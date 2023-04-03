@@ -16,26 +16,28 @@ th, td {
 }
 </style>
 <body>
-
+	<!-- 	<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}"></th:block th:if="itemReport.item.branch.branchName"> -->
 	<div class="container">
 		<br />
 		<h1 align="center">보고 목록</h1>
 		<br />
 		<table id="itemReportList">
-			<tr align="center">
-				<th class="th" style="width: 7%;">구분</th>
-				<th class="th" style="width: 10%;">보고 유형</th>
-				<th class="th" style="width: 15%;">품목명</th>
-				<th class="th" style="width: 10%;">수량(양)</th>
-				<th class="th" style="width: 28%;">비고</th>
-				<th class="th" style="width: 10%;">보고자</th>
-				<th class="th" style="width: 15%;">보고 날짜</th>
-				<th class="th" style="width: 5%;">삭제</th>
-			</tr>
 			<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
+				<tr align="center">
+					<th class="th" style="width: 7%;">구분</th>
+					<th class="th" style="width: 7%;">지점명</th>
+					<th class="th" style="width: 10%;">보고 유형</th>
+					<th class="th" style="width: 15%;">품목명</th>
+					<th class="th" style="width: 10%;">수량(양)</th>
+					<th class="th" style="width: 21%;">비고</th>
+					<th class="th" style="width: 10%;">보고자</th>
+					<th class="th" style="width: 15%;">보고 날짜</th>
+					<th class="th" style="width: 5%;">삭제</th>
+				</tr>
 				<th:block th:each="item : ${items}">
 					<tr th:each="itemReport : ${itemReports}" class="tr" align="center" th:if="${item.id == itemReport.item.id}">
 						<td class="td" id="id" th:text="${itemReport.id}"></td>
+						<td class="td" id="branchName" th:text="${itemReport.item.branch.branchName}"></td>
 						<th:block>
 							<td th:if="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">발주</td>
 							<td th:unless="${#strings.toString(itemReport.reportType) == 'STORE'}" class="td" id="reportType">소모</td>
@@ -50,6 +52,16 @@ th, td {
 			</th:block>
 
 			<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'MANAGER'}">
+				<tr align="center">
+					<th class="th" style="width: 7%;">구분</th>
+					<th class="th" style="width: 10%;">보고 유형</th>
+					<th class="th" style="width: 15%;">품목명</th>
+					<th class="th" style="width: 10%;">수량(양)</th>
+					<th class="th" style="width: 28%;">비고</th>
+					<th class="th" style="width: 10%;">보고자</th>
+					<th class="th" style="width: 15%;">보고 날짜</th>
+					<th class="th" style="width: 5%;">삭제</th>
+				</tr>
 				<th:block th:each="item : ${items}" th:if="${#authentication.principal.user.branch == item.branch}">
 					<tr th:each="itemReport : ${itemReports}" class="tr" align="center" th:if="${item.id == itemReport.item.id}">
 						<td class="td" id="id" th:text="${itemReport.id}"></td>
@@ -67,6 +79,16 @@ th, td {
 			</th:block>
 
 			<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'EMPLOYEE'}">
+				<tr align="center">
+					<th class="th" style="width: 7%;">구분</th>
+					<th class="th" style="width: 10%;">보고 유형</th>
+					<th class="th" style="width: 15%;">품목명</th>
+					<th class="th" style="width: 10%;">수량(양)</th>
+					<th class="th" style="width: 28%;">비고</th>
+					<th class="th" style="width: 10%;">보고자</th>
+					<th class="th" style="width: 15%;">보고 날짜</th>
+					<th class="th" style="width: 5%;">삭제</th>
+				</tr>
 				<th:block th:each="item : ${items}" th:if="${#authentication.principal.user.branch == item.branch}">
 					<tr th:each="itemReport : ${itemReports}" class="tr" align="center" th:if="${item.id == itemReport.item.id}">
 						<td class="td" id="id" th:text="${itemReport.id}"></td>
