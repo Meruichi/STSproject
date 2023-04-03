@@ -6,6 +6,11 @@
 </head>
 <header th:replace="~{layout/header::header}"></header>
 <body>
+<th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
+접근권한이 없습니다.
+<input type="button" value="뒤로가기" onclick="history.back();" />
+</th:block>
+<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
 	<div class="container">
 		<form>
 			<input type="hidden" id="id" th:value="${board.id}" />
@@ -20,8 +25,8 @@
 		<th:block th:if="${board.user.username == #authentication.principal.user.username}">
 			<button id="btn-update" class="btn btn-primary">수정</button>
 		</th:block>
-
 	</div>
+</th:block>
 	<script>
 		$('.summernote').summernote({
 			placeholder : '내용을 입력하세요',

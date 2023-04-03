@@ -16,11 +16,10 @@ th, td {
 }
 </style>
 <body>
-
 	<div class="container">
-		<br />
+		<br/>
 		<h1 align="center">물품 목록</h1>
-		<br />
+		<br/>
 		<table id="itemList">
 			<tr align="center">
 				<th class="th" style="width: 7%;">구분</th>
@@ -35,7 +34,7 @@ th, td {
 			<tr th:each="item : ${items}" class="tr" align="center">
 				<td class="td" id="id" th:text="${item.id}"></td>
 				<td class="td" id="branchName" th:text="${item.branch.branchName}"></td>
-				<td class="td" id="itemReportCategory" th:value="${item.itemReportCategory}" th:text="${item.itemReportCategory}"></td>
+				<td class="td" id="itemCategory" th:value="${item.itemCategory}" th:text="${item.itemCategory}"></td>
 				<td class="td" id="itemName" th:value="${item.itemName}" th:text="${item.itemName}"></td>
 				<td class="td" id="itemQuantity" th:text="${item.itemQuantity}"></td>
 				<td class="td" id="itemListComment" th:text="${item.itemListComment}"></td>
@@ -46,7 +45,7 @@ th, td {
 			<tr th:each="item : ${items}" class="tr" align="center" th:if="${#authentication.principal.user.branch == item.branch}">
 				<td class="td" id="id" th:text="${item.id}"></td>
 				<td class="td" id="branchName" th:text="${item.branch.branchName}"></td>
-				<td class="td" id="itemReportCategory" th:value="${item.itemReportCategory}" th:text="${item.itemReportCategory}"></td>
+				<td class="td" id="itemCategory" th:value="${item.itemCategory}" th:text="${item.itemCategory}"></td>
 				<td class="td" id="itemName" th:value="${item.itemName}" th:text="${item.itemName}"></td>
 				<td class="td" id="itemQuantity" th:text="${item.itemQuantity}"></td>
 				<td class="td" id="itemListComment" th:text="${item.itemListComment}"></td>

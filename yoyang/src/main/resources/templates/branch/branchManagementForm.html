@@ -16,7 +16,11 @@ th, td {
 }
 </style>
 <body>
-
+<th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
+접근권한이 없습니다.
+<input type="button" value="뒤로가기" onclick="history.back();" />
+</th:block>
+<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
 	<div class="container">
 		<br />
 		<h1 align="center">지점 목록</h1>
@@ -58,6 +62,7 @@ th, td {
 			</th:block>
 		</ul>
 	</div>
+</th:block>
 	<script src="/js/user.js"></script>
 </body>
 <footer th:replace="~{layout/footer::footer}"></footer>
