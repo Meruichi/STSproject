@@ -12,6 +12,9 @@
 </th:block>
 <th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
 	<div class="container">
+		<br />
+		<h1 align="center">지점 추가</h1>
+		<br />
 		<form>
 			<div class="form-group">
 				<label for="branchName">지점명 : </label> <input type="text" class="form-control" placeholder="지점명을 입력하세요" id="branchName">

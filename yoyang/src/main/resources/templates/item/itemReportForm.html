@@ -9,7 +9,10 @@
 	<div class="container">
 		<form>
 			<div class="form-group">
-				<label for="item">아이템 선택 : </label> <select name="item" class="form-control">
+					<br />
+		<h1 align="center">발주/소모 보고</h1>
+		<br />
+				<label for="item">품목 선택 : </label> <select name="item" class="form-control">
 					<option value="" selected>품목을 선택하세요</option>
 					<th:block th:each="item : ${items}" th:if="${#authentication.principal.user.branch.id == item.branch.id}">
 						<option id="itemId" th:value="${item.id}" th:text="${item.itemName}"></option>

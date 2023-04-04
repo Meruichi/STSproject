@@ -12,6 +12,9 @@
 </th:block>
 <th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'EMPLOYEE'}">
 	<div class="container">
+		<br />
+		<h1 align="center">물품 추가</h1>
+		<br />
 		<form>
 			<div class="form-group">
 				<label for="itemCategory">품목분류 : </label> <input type="text" class="form-control" placeholder="품목분류를 입력하세요" id="itemCategory">
