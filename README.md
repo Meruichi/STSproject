@@ -1,6 +1,11 @@
 # STSproject
 YOYANG<br/>
-v.1.0.3 update<br/>
+
+v1.0.4 update<br/>
+한글 설명이 직관적으로 수정되었습니다.<br/>
+Spring Boot Verion Update 3.0.4 => 3.0.5<br/><br/>
+
+v1.0.3 update<br/>
 물품보고에서 관리자접근시 지점명도 보이도록 수정되었습니다. <br/><br/>
 
 v1.0.2 update<br/>
