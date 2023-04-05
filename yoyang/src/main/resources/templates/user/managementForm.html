@@ -21,45 +21,58 @@ th, td {
 		<h1 align="center">사용자 목록</h1>
 		<br />
 		<table id="userList">
-			<tr align="center">
-				<th class="th" style="width: 5%;">구분</th>
-				<th class="th" style="width: 15%;">아이디</th>
-				<th class="th" style="width: 10%;">이름</th>
-				<th class="th" style="width: 10%;">연락처</th>
-				<th class="th" style="width: 25%;">이메일</th>
-				<th class="th" style="width: 10%;">가입일자</th>
-				<th class="th" style="width: 7%;">탈퇴여부</th>
-				<th class="th" style="width: 10%;">역할</th>
-				<th class="th" style="width: 18%;">권한 변경</th>
-			</tr>
 			<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
-			<tr th:each="user : ${users}" class="tr" align="center">
-				<td class="td" id="userNumber" th:text="${user.userNumber}"></td>
-				<td class="td" id="username" th:value="${user.username}" th:text="${user.username}"></td>
-				<td class="td" id="userRealname" th:value="${user.userRealname}" th:text="${user.userRealname}"></td>
-				<td class="td" id="userPhoneNumber" th:text="${user.userPhoneNumber}"></td>
-				<td class="td" id="userEmail" th:text="${user.userEmail}"></td>
-				<td class="td" id="createDate" th:text="${#strings.substring(user.createDate, 0, 10)}"></td>
-				<td class="td" id="userWithdrawn" th:text="${user.userWithdrawn}"></td>
-				<td class="td" id="role" th:value="${user.role}" th:text="${user.role}"></td>
-				<th:block th:if="${#strings.toString(user.role) == 'ADMIN'}">
-					<td class="td">관리자</td>
-				</th:block>
-				<th:block th:unless="${#strings.toString(user.role) == 'ADMIN'}">
-					<td class="td"><button id="btn-role-update" th:value="${user.userNumber}">변경</button></td>
-				</th:block>
+				<tr align="center">
+					<th class="th" style="width: 5%;">구분</th>
+					<th class="th" style="width: 12%;">아이디</th>
+					<th class="th" style="width: 8%;">지점명</th>
+					<th class="th" style="width: 8%;">이름</th>
+					<th class="th" style="width: 12%;">연락처</th>
+					<th class="th" style="width: 20%;">이메일</th>
+					<th class="th" style="width: 10%;">가입일자</th>
+					<th class="th" style="width: 7%;">탈퇴여부</th>
+					<th class="th" style="width: 10%;">역할</th>
+					<th class="th" style="width: 18%;">권한 변경</th>
+				</tr>
+				<tr th:each="user : ${users}" class="tr" align="center">
+					<td class="td" id="userNumber" th:text="${user.userNumber}"></td>
+					<td class="td" id="username" th:value="${user.username}" th:text="${user.username}"></td>
+					<td class="td" id="branchName" th:value="${user.branch.branchName}" th:text="${user.branch.branchName}"></td>
+					<td class="td" id="userRealname" th:value="${user.userRealname}" th:text="${user.userRealname}"></td>
+					<td class="td" id="userPhoneNumber" th:text="${user.userPhoneNumber}"></td>
+					<td class="td" id="userEmail" th:text="${user.userEmail}"></td>
+					<td class="td" id="createDate" th:text="${#strings.substring(user.createDate, 0, 10)}"></td>
+					<td class="td" id="userWithdrawn" th:text="${user.userWithdrawn}"></td>
+					<td class="td" id="role" th:value="${user.role}" th:text="${user.role}"></td>
+					<th:block th:if="${#strings.toString(user.role) == 'ADMIN'}">
+						<td class="td">관리자</td>
+					</th:block>
+					<th:block th:unless="${#strings.toString(user.role) == 'ADMIN'}">
+						<td class="td"><button id="btn-role-update" th:value="${user.userNumber}">변경</button></td>
+					</th:block>
 			</th:block>
 			<th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
-			<tr th:each="user : ${users}" class="tr" align="center" th:if="${#authentication.principal.user.branch == user.branch}">
-				<td class="td" id="userNumber" th:text="${user.userNumber}"></td>
-				<td class="td" id="username" th:value="${user.username}" th:text="${user.username}"></td>
-				<td class="td" id="userRealname" th:value="${user.userRealname}" th:text="${user.userRealname}"></td>
-				<td class="td" id="userPhoneNumber" th:text="${user.userPhoneNumber}"></td>
-				<td class="td" id="userEmail" th:text="${user.userEmail}"></td>
-				<td class="td" id="createDate" th:text="${#strings.substring(user.createDate, 0, 10)}"></td>
-				<td class="td" id="userWithdrawn" th:text="${user.userWithdrawn}"></td>
-				<td class="td" id="role" th:value="${user.role}" th:text="${user.role}"></td>
-				<td class="td">관리자 전용</td>
+				<tr align="center">
+					<th class="th" style="width: 5%;">구분</th>
+					<th class="th" style="width: 15%;">아이디</th>
+					<th class="th" style="width: 10%;">이름</th>
+					<th class="th" style="width: 10%;">연락처</th>
+					<th class="th" style="width: 25%;">이메일</th>
+					<th class="th" style="width: 10%;">가입일자</th>
+					<th class="th" style="width: 7%;">탈퇴여부</th>
+					<th class="th" style="width: 10%;">역할</th>
+					<th class="th" style="width: 18%;">권한 변경</th>
+				</tr>
+				<tr th:each="user : ${users}" class="tr" align="center" th:if="${#authentication.principal.user.branch == user.branch}">
+					<td class="td" id="userNumber" th:text="${user.userNumber}"></td>
+					<td class="td" id="username" th:value="${user.username}" th:text="${user.username}"></td>
+					<td class="td" id="userRealname" th:value="${user.userRealname}" th:text="${user.userRealname}"></td>
+					<td class="td" id="userPhoneNumber" th:text="${user.userPhoneNumber}"></td>
+					<td class="td" id="userEmail" th:text="${user.userEmail}"></td>
+					<td class="td" id="createDate" th:text="${#strings.substring(user.createDate, 0, 10)}"></td>
+					<td class="td" id="userWithdrawn" th:text="${user.userWithdrawn}"></td>
+					<td class="td" id="role" th:value="${user.role}" th:text="${user.role}"></td>
+					<td class="td">관리자 전용</td>
 			</th:block>
 		</table>
 		<ul class="pagination justify-content-center">
