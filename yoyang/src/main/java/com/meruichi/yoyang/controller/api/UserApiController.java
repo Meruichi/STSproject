@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.meruichi.yoyang.config.auth.PrincipalDetail;
 import com.meruichi.yoyang.dto.ResponseDto;
-import com.meruichi.yoyang.model.Branch;
 import com.meruichi.yoyang.model.User;
 import com.meruichi.yoyang.service.UserService;
 
@@ -63,5 +62,4 @@ public class UserApiController {
 		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); 
 	}
-
 }

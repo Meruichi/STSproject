@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.meruichi.yoyang.model.UserRoleType;
 import com.meruichi.yoyang.repository.BranchRepository;
 import com.meruichi.yoyang.repository.UserRepository;
-import com.meruichi.yoyang.model.Board;
 import com.meruichi.yoyang.model.Branch;
 import com.meruichi.yoyang.model.User;
 

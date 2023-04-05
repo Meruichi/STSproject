@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.meruichi.yoyang.service.BranchService;
 import com.meruichi.yoyang.service.UserService;
 
-
 @Controller
 public class UserController {
-
+    
 	@Autowired
 	private UserService userService;
 	
@@ -61,5 +60,6 @@ public class UserController {
 			@PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 		model.addAttribute("branches", branchService.지점목록(pageable));
 	}
-
+	
+	
 }
