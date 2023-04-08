@@ -35,6 +35,7 @@
 				<label for="phoneNumber">Phone Number:</label>
 				<input type="tel" th:value="${#authentication.principal.user.userPhoneNumber}" class="form-control" placeholder="Enter phoneNumber" id="phoneNumber" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
 			</div>	
+			
 	</form>
 	<button id="btn-update" class="btn btn-primary">회원정보 수정</button>
 </div>
