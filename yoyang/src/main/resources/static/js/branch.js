@@ -9,7 +9,7 @@ let index ={
 	add: function(){
 		let data = {
 			branchName: $("#branchName").val(),
-			branchAddress: $("#branchAddress").val(),
+			branchAddress: $("#branchPostcode").val()+", "+$("#branchBasicAddress").val()+" "+$("#branchDetailAddress").val()+$("#branchExtraAddress").val(),
 			branchDirectNumber: $("#branchDirectNumber").val()
 		}
 		$.ajax({
