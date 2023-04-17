@@ -6,29 +6,29 @@
 </head>
 <header th:replace="~{layout/header::header}"></header>
 <body>
-<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'EMPLOYEE'}">
+	<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'EMPLOYEE'}">
 접근권한이 없습니다.
 <input type="button" value="뒤로가기" onclick="history.back();" />
-</th:block>
-<th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'EMPLOYEE'}">
-	<div class="container">
-		<br />
-		<h1 align="center">물품 추가</h1>
-		<br />
-		<form>
-			<div class="form-group">
-				<label for="itemCategory">품목분류 : </label> <input type="text" class="form-control" placeholder="품목분류를 입력하세요" id="itemCategory">
-			</div>
-			<div class="form-group">
-				<label for="itemName">품명 : </label> <input type="text" class="form-control" placeholder="아이템 이름을 입력하세요" id="itemName">
-			</div>
-			<div class="form-group">
-				<label for="itemListComment">비고 : </label> <input type="tel" class="form-control" placeholder="단위, 특이사항 등" id="itemListComment" >
-			</div>
-		</form>
-		<button id="btn-add" class="btn btn-primary">등록</button>
-	</div>
-</th:block>
+	</th:block>
+	<th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'EMPLOYEE'}">
+		<div class="container">
+			<br />
+			<h1 align="center">물품 추가</h1>
+			<br />
+			<form>
+				<div class="form-group">
+					<label for="itemCategory">품목분류 : </label> <input type="text" class="form-control" placeholder="품목분류를 입력하세요" id="itemCategory">
+				</div>
+				<div class="form-group">
+					<label for="itemName">품명 : </label> <input type="text" class="form-control" placeholder="아이템 이름을 입력하세요" id="itemName">
+				</div>
+				<div class="form-group">
+					<label for="itemListComment">비고 : </label> <input type="tel" class="form-control" placeholder="단위, 특이사항 등" id="itemListComment">
+				</div>
+			</form>
+			<button id="btn-add" class="btn btn-primary">등록</button>
+		</div>
+	</th:block>
 	<script src="/js/item.js"></script>
 </body>
 <footer th:replace="~{layout/footer::footer}"></footer>

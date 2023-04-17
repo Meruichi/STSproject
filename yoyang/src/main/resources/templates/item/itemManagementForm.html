@@ -17,9 +17,9 @@ th, td {
 </style>
 <body>
 	<div class="container">
-		<br/>
+		<br />
 		<h1 align="center">물품 목록</h1>
-		<br/>
+		<br />
 		<table id="itemList">
 			<tr align="center">
 				<th class="th" style="width: 7%;">구분</th>
@@ -31,31 +31,31 @@ th, td {
 				<th class="th" style="width: 10%;">삭제</th>
 			</tr>
 			<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
-			<tr th:each="item : ${items}" class="tr" align="center">
-				<td class="td" id="id" th:text="${item.id}"></td>
-				<td class="td" id="branchName" th:text="${item.branch.branchName}"></td>
-				<td class="td" id="itemCategory" th:value="${item.itemCategory}" th:text="${item.itemCategory}"></td>
-				<td class="td" id="itemName" th:value="${item.itemName}" th:text="${item.itemName}"></td>
-				<td class="td" id="itemQuantity" th:text="${item.itemQuantity}"></td>
-				<td class="td" id="itemListComment" th:text="${item.itemListComment}"></td>
-				<td class="td"><button id="btn-delete" th:value="${item.id}">삭제</button></td>
-			</tr>
+				<tr th:each="item : ${items}" class="tr" align="center">
+					<td class="td" id="id" th:text="${item.id}"></td>
+					<td class="td" id="branchName" th:text="${item.branch.branchName}"></td>
+					<td class="td" id="itemCategory" th:value="${item.itemCategory}" th:text="${item.itemCategory}"></td>
+					<td class="td" id="itemName" th:value="${item.itemName}" th:text="${item.itemName}"></td>
+					<td class="td" id="itemQuantity" th:text="${item.itemQuantity}"></td>
+					<td class="td" id="itemListComment" th:text="${item.itemListComment}"></td>
+					<td class="td"><button id="btn-delete" th:value="${item.id}">삭제</button></td>
+				</tr>
 			</th:block>
 			<th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'ADMIN'}">
-			<tr th:each="item : ${items}" class="tr" align="center" th:if="${#authentication.principal.user.branch == item.branch}">
-				<td class="td" id="id" th:text="${item.id}"></td>
-				<td class="td" id="branchName" th:text="${item.branch.branchName}"></td>
-				<td class="td" id="itemCategory" th:value="${item.itemCategory}" th:text="${item.itemCategory}"></td>
-				<td class="td" id="itemName" th:value="${item.itemName}" th:text="${item.itemName}"></td>
-				<td class="td" id="itemQuantity" th:text="${item.itemQuantity}"></td>
-				<td class="td" id="itemListComment" th:text="${item.itemListComment}"></td>
-				<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'MANAGER'}">
-					<td class="td"><button id="btn-delete" th:value="${item.id}">삭제</button></td>
-				</th:block>
-				<th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'MANAGER'}">
-					<td class="td">MANAGER전용</td>
-				</th:block>
-			</tr>
+				<tr th:each="item : ${items}" class="tr" align="center" th:if="${#authentication.principal.user.branch == item.branch}">
+					<td class="td" id="id" th:text="${item.id}"></td>
+					<td class="td" id="branchName" th:text="${item.branch.branchName}"></td>
+					<td class="td" id="itemCategory" th:value="${item.itemCategory}" th:text="${item.itemCategory}"></td>
+					<td class="td" id="itemName" th:value="${item.itemName}" th:text="${item.itemName}"></td>
+					<td class="td" id="itemQuantity" th:text="${item.itemQuantity}"></td>
+					<td class="td" id="itemListComment" th:text="${item.itemListComment}"></td>
+					<th:block th:if="${#strings.toString(#authentication.principal.user.role) == 'MANAGER'}">
+						<td class="td"><button id="btn-delete" th:value="${item.id}">삭제</button></td>
+					</th:block>
+					<th:block th:unless="${#strings.toString(#authentication.principal.user.role) == 'MANAGER'}">
+						<td class="td">MANAGER전용</td>
+					</th:block>
+				</tr>
 			</th:block>
 		</table>
 		<ul class="pagination justify-content-center">

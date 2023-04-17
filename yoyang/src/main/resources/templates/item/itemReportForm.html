@@ -9,10 +9,9 @@
 	<div class="container">
 		<form>
 			<div class="form-group">
-					<br />
-		<h1 align="center">발주/소모 보고</h1>
-		<br />
-				<label for="item">품목 선택 : </label> <select name="item" class="form-control">
+				<br />
+				<h1 align="center">발주/소모 보고</h1>
+				<br /> <label for="item">품목 선택 : </label> <select name="item" class="form-control">
 					<option value="" selected>품목을 선택하세요</option>
 					<th:block th:each="item : ${items}" th:if="${#authentication.principal.user.branch.id == item.branch.id}">
 						<option id="itemId" th:value="${item.id}" th:text="${item.itemName}"></option>
@@ -20,12 +19,11 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="reportType">보고 구분 : &nbsp;&nbsp;</label>
-					<select name="reportType" id="reportType" class="form-control">
-							<option value="" selected>보고유형을 선택하세요</option>
-							<option value="STORE">발주</option>
-							<option value="CONSUMPTION">소모</option>
-					</select>
+				<label for="reportType">보고 구분 : &nbsp;&nbsp;</label> <select name="reportType" id="reportType" class="form-control">
+					<option value="" selected>보고유형을 선택하세요</option>
+					<option value="STORE">발주</option>
+					<option value="CONSUMPTION">소모</option>
+				</select>
 			</div>
 			<div class="form-group">
 				<label for="itemQuantityReport">보고 수량 : (단위 제외)</label> <input class="form-control" id="itemQuantityReport"></input>
