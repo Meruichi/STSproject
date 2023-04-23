@@ -3,9 +3,6 @@ let index = {
 		$("#btn-save").on("click", () => {
 			this.save();
 		});
-		/*$("#btn-login").on("click", ()=>{ 
-			this.login(); 
-		});	*/
 		$("#btn-update").on("click", () => {
 			this.update();
 		});
@@ -16,7 +13,6 @@ let index = {
 			this.connect();
 		});
 	},
-
 	save: function() {
 		let data = {
 			username: $("#username").val(),
@@ -31,10 +27,6 @@ let index = {
 			url: "/auth/joinProc",
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
-			/*			beforeSend: function (jqXHR, settings) {
-					   var header = $("meta[name='_csrf_header']").attr("content");
-					   var token = $("meta[name='_csrf']").attr("content");
-					   jqXHR.setRequestHeader(header, token);}*/
 		}
 
 		).done(function(resp) {
@@ -46,24 +38,6 @@ let index = {
 			alert("회원가입 실패(중복된 아이디)");
 		});
 	},
-
-	/*		login: function(){
-			let data = {
-				username: $("#username").val(),
-				password: $("#password").val(),
-			}
-			$.ajax({
-				type: "post",
-				url: "/api/user/login",
-				data: JSON.stringify(data), 
-				contentType: "application/json; charset=utf-8", 
-			}).done(function(resp){ 
-				alert("로그인 완료");
-				location.href="/";
-			}).fail(function(error){
-				alert(JSON.stringify(error));
-			});
-		},*/
 	update: function() {
 		let data = {
 			userNumber: $("#userNumber").val(),
@@ -90,7 +64,7 @@ let index = {
 		alert(id);
 		$.ajax({
 			type: "put",
-			url: "/user/connectForm/" + id ,
+			url: "/user/connectForm/" + id,
 			//data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 		}).done(function(resp) {
@@ -104,7 +78,7 @@ let index = {
 		let id = $("#btn-role-update").val();
 		$.ajax({
 			type: "put",
-			url: "/user/managementForm/" + id ,
+			url: "/user/managementForm/" + id,
 			//data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 		}).done(function(resp) {
@@ -114,7 +88,5 @@ let index = {
 			alert(JSON.stringify(error));
 		});
 	},
-
 }
-
 index.init();
