@@ -16,8 +16,8 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 public class SecurityConfig {
 
-	@Bean // IoC가 됨(return값을 spring이 관리, 필요할때마다 쓰면 됨)
-	public BCryptPasswordEncoder encodePWD() { // 암호화 해주는 메소드
+	@Bean
+	public BCryptPasswordEncoder encodePWD() {
 		return new BCryptPasswordEncoder();
 	}
 	
@@ -37,9 +37,9 @@ public class SecurityConfig {
 			.and()
 			.formLogin()
 			.loginPage("/auth/loginForm")
-			.loginProcessingUrl("/auth/loginProc") // 스프링 시큐리티가 해당주소에서의 로그인을 가로챔
-			.defaultSuccessUrl("/") // 로그인 성공시 url
-			// .failureUrl("fail") // 실패시
+			.loginProcessingUrl("/auth/loginProc") 
+			.defaultSuccessUrl("/")
+			// .failureUrl("fail")
 			;			
 		return http.build();
 	}
