@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.meruichi.yoyang.config.auth.PrincipalDetail;
 import com.meruichi.yoyang.model.User;
 import com.meruichi.yoyang.repository.UserRepository;
 

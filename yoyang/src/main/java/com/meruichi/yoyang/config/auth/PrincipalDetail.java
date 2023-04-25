@@ -3,15 +3,12 @@ package com.meruichi.yoyang.config.auth;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.meruichi.yoyang.model.User;
 
 import lombok.Getter;
 
-//스프링시큐리티가 로그인요청을 가로채서 로그인을 진행하고 완료되면 UserDetails타입의 오브젝트를
-//스프링시큐리티의 고유한 세션저장소에 저장함
 @Getter
 public class PrincipalDetail implements UserDetails{
 
@@ -32,22 +29,22 @@ public class PrincipalDetail implements UserDetails{
 	}
 
 	@Override
-	public boolean isAccountNonExpired() { //계정만료를 확인 true:만료안됨
+	public boolean isAccountNonExpired() { //계정만료를 확인
 		return true;
 	}
 
 	@Override
-	public boolean isAccountNonLocked() { //계정잠김을 확인 true:만료안됨
+	public boolean isAccountNonLocked() { //계정잠김을 확인
 		return true;
 	}
 
 	@Override
-	public boolean isCredentialsNonExpired() { //비밀번호 만료를 확인 true:만료안됨
+	public boolean isCredentialsNonExpired() { //비밀번호 만료를 확인
 		return true;
 	}
 
 	@Override
-	public boolean isEnabled() { //계정활성화 확인 true:활성화
+	public boolean isEnabled() { //계정활성화 확인
 		return true;
 	}
 	
@@ -67,14 +64,4 @@ public class PrincipalDetail implements UserDetails{
 		
 		return collectors;
 	}
-	
-	/*
-	 * public Authentication getAuthentication(Authenticationtoken
-	 * authenticationtoken) { PrincipalDetail principaldetail =
-	 * PrincipalDetailService.loadByUsername(authenticationtoken.getTokenClaims().
-	 * getSubject()); return new
-	 * UsernamePassowordAuthenticationToken(principaldetail, authenticationtoken,
-	 * principaldetail.getAuthorities()); }
-	 */
-	
 }
