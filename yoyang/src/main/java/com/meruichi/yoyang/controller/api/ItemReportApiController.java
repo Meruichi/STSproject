@@ -28,7 +28,6 @@ public class ItemReportApiController {
 	
 	@DeleteMapping("/api/deleteItemReport/{id}")
 	public ResponseDto<Integer> deleteItemReport(@PathVariable int id) {
-		
 		itemReportService.아이템보고삭제(id);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); 
 	}
