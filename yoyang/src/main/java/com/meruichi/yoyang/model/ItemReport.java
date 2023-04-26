@@ -2,7 +2,6 @@ package com.meruichi.yoyang.model;
 
 import java.sql.Timestamp;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -32,11 +31,6 @@ public class ItemReport {
 	
 	@Enumerated(EnumType.STRING)
 	private ItemReportType reportType; // 발주인지 소모인지
-	/*
-	 * @ManyToOne // 한명의 유저는 여러개의 보고를 할수있다.
-	 * 
-	 * @JoinColumn(name = "user_id") private User user;
-	 */
 
 	@ManyToOne // 한명의 아이템에 여러개의 보고가 있을 수 있다
 	@JoinColumn(name = "item_id")

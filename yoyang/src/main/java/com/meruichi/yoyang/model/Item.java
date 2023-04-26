@@ -1,6 +1,5 @@
 package com.meruichi.yoyang.model;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 public class Item {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
