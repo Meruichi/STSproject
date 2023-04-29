@@ -1,6 +1,5 @@
 package com.meruichi.yoyang.service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,6 @@ import com.meruichi.yoyang.model.Item;
 import com.meruichi.yoyang.model.ItemReport;
 import com.meruichi.yoyang.model.User;
 import com.meruichi.yoyang.repository.ItemRepository;
-
 
 @Service
 public class ItemService{
@@ -26,7 +24,6 @@ public class ItemService{
 		item.setBranch(persistance);
 		itemRepository.save(item);
 	}
-
 	@Transactional(readOnly = true)
 	public Object 아이템목록(Pageable pageable) {
 		return itemRepository.findAll(pageable);

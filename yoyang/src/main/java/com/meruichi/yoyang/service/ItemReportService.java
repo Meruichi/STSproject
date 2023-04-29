@@ -39,4 +39,5 @@ public class ItemReportService {
 	public void 아이템보고삭제(int id) {
 		itemReportRepository.deleteById(id);
 	}
+	
 }
