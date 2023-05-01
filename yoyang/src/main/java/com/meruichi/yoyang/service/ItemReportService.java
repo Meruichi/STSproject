@@ -16,16 +16,15 @@ public class ItemReportService {
 
 	@Autowired
 	private ItemRepository itemRepository;
-	
+
 	@Autowired
 	private ItemReportRepository itemReportRepository;
-	
+
 	@Transactional
 	public void 아이템보고(int id, ItemReport itemReport, User user) {
-		Item persistance = itemRepository.findById(id)
-				.orElseThrow(()->{
-					return new IllegalArgumentException("아이템찾기 실패");
-				});
+		Item persistance = itemRepository.findById(id).orElseThrow(() -> {
+			return new IllegalArgumentException("아이템찾기 실패");
+		});
 		itemReport.setItem(persistance);
 		itemReport.setUser(user);
 		itemReportRepository.save(itemReport);
@@ -39,5 +38,5 @@ public class ItemReportService {
 	public void 아이템보고삭제(int id) {
 		itemReportRepository.deleteById(id);
 	}
-	
+
 }

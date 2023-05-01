@@ -10,10 +10,9 @@ import com.meruichi.yoyang.repository.BranchRepository;
 
 @Service
 public class BranchService {
-	
+
 	@Autowired
 	private BranchRepository branchRepository;
-
 
 	@Transactional
 	public void 지점등록(Branch branch) {

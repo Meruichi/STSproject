@@ -42,7 +42,7 @@ public class ItemService{
 			persistance.setItemQuantity(persistanceValue += itemReportValue);
 		}else{persistance.setItemQuantity(persistanceValue -= itemReportValue);
 		}
-		itemRepository.save(persistance);		
+		itemRepository.save(persistance);
 	}
 
 	public void 아이템삭제(int id) {

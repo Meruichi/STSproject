@@ -14,14 +14,14 @@ import com.meruichi.yoyang.service.BranchService;
 
 @RestController
 public class BranchApiController {
-	
+
 	@Autowired
 	private BranchService branchService;
-	
+
 	@PostMapping("/api/branch")
 	public ResponseDto<Integer> add(@RequestBody Branch branch, @AuthenticationPrincipal PrincipalDetail principal) {
 		branchService.지점등록(branch);
-		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); 
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
-	
+
 }
