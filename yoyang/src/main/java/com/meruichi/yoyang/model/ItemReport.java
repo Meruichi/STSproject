@@ -28,21 +28,21 @@ public class ItemReport {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Enumerated(EnumType.STRING)
 	private ItemReportType reportType; // 발주인지 소모인지
 
 	@ManyToOne // 한명의 아이템에 여러개의 보고가 있을 수 있다
 	@JoinColumn(name = "item_id")
-	private Item item; 
-	
+	private Item item;
+
 	@ManyToOne // 한명의 사용자가 여러개의 보고를 할 수 있다
 	@JoinColumn(name = "user_id")
-	private User user; 
-	
+	private User user;
+
 	@Column(nullable = false, length = 10)
-	private Double itemQuantityReport; 
-	
+	private Double itemQuantityReport;
+
 	@CreationTimestamp
 	private Timestamp createDate;
 
