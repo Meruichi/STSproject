@@ -55,7 +55,7 @@ public class UserService {
 	@Transactional
 	public void 회원지점연결(User user, int id) {
 		Branch persistance = branchRepository.findById(id).orElseThrow(() -> {
-			return new IllegalArgumentException("회원찾기 실패");
+			return new IllegalArgumentException("지점찾기 실패");
 		});
 		user.setBranch(persistance);
 		userRepository.save(user);
@@ -75,4 +75,11 @@ public class UserService {
 		userRepository.save(persistance);
 	}
 
+	public void 회원탈퇴(int id) {
+		User persistance = userRepository.findById(id).orElseThrow(() -> {
+			return new IllegalArgumentException("회원찾기 실패");
+		});
+		persistance.setUserWithdrawn(true);
+		userRepository.save(persistance);
+	}
 }

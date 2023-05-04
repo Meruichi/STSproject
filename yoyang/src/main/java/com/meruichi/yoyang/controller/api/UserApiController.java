@@ -55,4 +55,10 @@ public class UserApiController {
 		userService.±ÇÇÑº¯°æ(id);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
+	
+	@PutMapping("/user/withdrawForm/{id}")
+	public ResponseDto<Integer> withdraw(@PathVariable int id) {
+		userService.È¸¿øÅ»Åð(id);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+	}
 }

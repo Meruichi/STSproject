@@ -12,6 +12,9 @@ let index = {
 		$("#btn-connect").on("click", () => {
 			this.connect();
 		});
+		$("#btn-withdraw").on("click", () => {
+			this.withdraw();
+		});
 	},
 	save: function() {
 		let data = {
@@ -88,5 +91,22 @@ let index = {
 			alert(JSON.stringify(error));
 		});
 	},
+		withdraw: function() {
+		let id = $("#id").val();
+		let data = {
+			username: $("#username").val()
+		}
+		$.ajax({
+			type: "put",
+			url: "/user/withdrawForm/" + id,
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+		}).done(function(resp) {
+			alert("회원탈퇴 완료");
+			location.href = "/";
+		}).fail(function(error) {
+			alert(JSON.stringify(error));
+		});
+	}
 }
 index.init();

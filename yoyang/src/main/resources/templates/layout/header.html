@@ -33,6 +33,7 @@
 					<li class="nav-item"><a class="nav-link" href="/item/itemReportForm">발주/소모 보고</a></li>
 					<li class="nav-item"><a class="nav-link" href="/item/itemReportManagementForm">보고 현황</a></li>
 					<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보 수정</a></li>
+					<li class="nav-item"><a class="nav-link" href="/user/withdrawForm">회원탈퇴</a></li>
 					<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
 				</ul>
 				<ul class="navbar-nav" th:if="${#strings.toString(#authentication.principal.user.role) == 'MANAGER'}">
@@ -45,6 +46,7 @@
 					<li class="nav-item"><a class="nav-link" href="/item/itemReportForm">발주/소모 보고</a></li>
 					<li class="nav-item"><a class="nav-link" href="/item/itemReportManagementForm">보고 현황</a></li>
 					<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보 수정</a></li>
+					<li class="nav-item"><a class="nav-link" href="/user/withdrawForm">회원탈퇴</a></li>
 					<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
 				</ul>
 				<ul class="navbar-nav" th:if="${#strings.toString(#authentication.principal.user.role) == 'EMPLOYEE'}">
@@ -56,6 +58,7 @@
 					<li class="nav-item"><a class="nav-link" href="/item/itemReportForm">발주/소모 보고</a></li>
 					<li class="nav-item"><a class="nav-link" href="/item/itemReportManagementForm">보고 현황</a></li>
 					<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보 수정</a></li>
+					<li class="nav-item"><a class="nav-link" href="/user/withdrawForm">회원탈퇴</a></li>
 					<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
 				</ul>
 			</th:block>

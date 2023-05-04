@@ -41,6 +41,11 @@ public class UserController {
 		return "user/updateForm";
 	}
 	
+	@GetMapping("/user/withdrawForm")
+	public String withdrawnForm() {
+		return "user/withdrawForm";
+	}
+	
     @GetMapping("/username")
     public String getUserName(@AuthenticationPrincipal UserDetails UserDetails) {
         SecurityContext context = SecurityContextHolder.getContext();

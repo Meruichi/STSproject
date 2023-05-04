@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8">
+<th:block th:replace="~{layout/config::config}"></th:block>
+</head>
+<header th:replace="~{layout/header::header}"></header>
+<body>
+	<div class="container">
+		<br />
+		<h1 align="center">회원 탈퇴</h1>
+		<br />
+		<input type="hidden" id="id" th:value="${#authentication.principal.user.userNumber}" />
+		<input type="hidden" id="username" th:value="${#authentication.principal.user.username}" />
+			<h6>회원탈퇴시 계정을 더 이상 이용하지 못하게 됩니다.</h6>
+		<button id="btn-withdraw" class="btn btn-primary">탈퇴</button>
+	</div>
+	<script src="/js/user.js"></script>
+</body>
+<footer th:replace="~{layout/footer::footer}"></footer>
+</html>
