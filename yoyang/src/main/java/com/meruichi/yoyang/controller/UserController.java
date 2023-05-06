@@ -19,13 +19,13 @@ import com.meruichi.yoyang.service.UserService;
 
 @Controller
 public class UserController {
-    
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private BranchService branchService;
-	
+
 	@GetMapping("/auth/loginForm")
 	public String loginForm() {
 		return "user/loginForm";
@@ -35,36 +35,35 @@ public class UserController {
 	public String joinForm() {
 		return "user/joinForm";
 	}
-	
+
 	@GetMapping("/user/updateForm")
 	public String updateForm() {
 		return "user/updateForm";
 	}
-	
+
 	@GetMapping("/user/withdrawForm")
 	public String withdrawnForm() {
 		return "user/withdrawForm";
 	}
-	
-    @GetMapping("/username")
-    public String getUserName(@AuthenticationPrincipal UserDetails UserDetails) {
-        SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        return userDetails.getUsername();
-    }
-    
+
+	@GetMapping("/username")
+	public String getUserName(@AuthenticationPrincipal UserDetails UserDetails) {
+		SecurityContext context = SecurityContextHolder.getContext();
+		Authentication authentication = context.getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		return userDetails.getUsername();
+	}
+
 	@RequestMapping("/user/managementForm")
 	public void managementForm(Model model,
 			@PageableDefault(size = 10, sort = "userNumber", direction = Sort.Direction.DESC) Pageable pageable) {
 		model.addAttribute("users", userService.유저목록(pageable));
 	}
-	
+
 	@RequestMapping("/user/connectForm")
 	public void connectForm(Model model,
 			@PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 		model.addAttribute("branches", branchService.지점목록(pageable));
 	}
-	
-	
+
 }
