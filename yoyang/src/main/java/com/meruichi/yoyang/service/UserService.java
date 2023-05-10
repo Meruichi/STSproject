@@ -61,6 +61,7 @@ public class UserService {
 		userRepository.save(user);
 	}
 
+	@Transactional
 	public void 권한변경(int id) {
 		User persistance = userRepository.findById(id).orElseThrow(() -> {
 			return new IllegalArgumentException("회원찾기 실패");
@@ -75,6 +76,7 @@ public class UserService {
 		userRepository.save(persistance);
 	}
 
+	@Transactional
 	public void 회원탈퇴(int id) {
 		User persistance = userRepository.findById(id).orElseThrow(() -> {
 			return new IllegalArgumentException("회원찾기 실패");
