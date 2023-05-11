@@ -24,6 +24,7 @@ public class ItemService{
 		item.setBranch(persistance);
 		itemRepository.save(item);
 	}
+	
 	@Transactional(readOnly = true)
 	public Object 아이템목록(Pageable pageable) {
 		return itemRepository.findAll(pageable);
@@ -45,6 +46,7 @@ public class ItemService{
 		itemRepository.save(persistance);
 	}
 
+	@Transactional
 	public void 아이템삭제(int id) {
 		itemRepository.deleteById(id);
 	}
