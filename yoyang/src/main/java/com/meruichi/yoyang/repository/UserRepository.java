@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.meruichi.yoyang.model.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
-	Optional<User> findByUsername(String username);	// SELECT * FROM user WHERE username = ?;
+	Optional<User> findByUsername(String username);
 	Optional<User> findByUserNumber(Integer userNumber);
 }
