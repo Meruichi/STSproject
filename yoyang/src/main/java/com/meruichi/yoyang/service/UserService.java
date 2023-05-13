@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.meruichi.yoyang.model.UserRoleType;
 import com.meruichi.yoyang.repository.BranchRepository;
 import com.meruichi.yoyang.repository.UserRepository;
