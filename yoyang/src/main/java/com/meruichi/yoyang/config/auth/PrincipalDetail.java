@@ -9,6 +9,7 @@ import com.meruichi.yoyang.model.User;
 
 import lombok.Getter;
 
+@SuppressWarnings("serial")
 @Getter
 public class PrincipalDetail implements UserDetails {
 
