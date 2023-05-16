@@ -30,7 +30,7 @@ public class PrincipalDetail implements UserDetails {
 	}
 
 	@Override
-	public boolean isAccountNonExpired() { // 계정만료를 확인
+	public boolean isAccountNonExpired() { // 계정만료여부
 		if (user.isUserWithdrawn()) {
 			return false;
 		}
@@ -38,17 +38,17 @@ public class PrincipalDetail implements UserDetails {
 	}
 
 	@Override
-	public boolean isAccountNonLocked() { // 계정잠김을 확인
+	public boolean isAccountNonLocked() { // 계정잠김여부
 		return true;
 	}
 
 	@Override
-	public boolean isCredentialsNonExpired() { // 비밀번호 만료를 확인
+	public boolean isCredentialsNonExpired() { // 비밀번호만료여부
 		return true;
 	}
 
 	@Override
-	public boolean isEnabled() { // 계정활성화 확인
+	public boolean isEnabled() { // 계정활성화여부
 		return true;
 	}
 
